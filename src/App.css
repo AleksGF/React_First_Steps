@@ -1,0 +1,155 @@
+.app-wrapper {
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 1fr 5fr;
+  grid-template-areas: "header header"
+                       "nav content";
+  grid-gap: 5px;
+  max-width: 1200px;
+  background-color: #27262A;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.header {
+  grid-area: header;
+}
+
+.logo {
+  max-height: 60px;
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.nav-list-item {
+  border: solid 1px #5588EB;
+  border-radius: 5px;
+  width: 70%;
+  margin: 10px auto;
+  padding: 10px;
+  transition: all .5s ease-out;
+}
+
+.nav-list-item:hover {
+  background-color: #000000;
+  border: solid 1px #0073DE;
+  cursor: pointer;
+}
+
+.nav-list-item:last-child {
+  margin-top: 50px;
+}
+
+.nav-list-item-link {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2898FF;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.content {
+  grid-area: content;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.head-picture-container {
+  position: relative;
+  overflow: hidden;
+  height: 120px;
+  width: 98%;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.content-head-picture {
+  position: absolute;
+  top: -135px;
+  width: 100%;
+  opacity: 85%;
+}
+
+.personal-data-container {
+  display: flex;
+  margin: 30px auto;
+  width: 95%;
+}
+
+.avatar {
+  max-width: 98px;
+  max-height: 98px;
+  border: solid 1px #888888;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.full-name {
+  margin: 0;
+  color: #2898FF;
+}
+
+.colored-text {
+  color: #2898FF;
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 95%;
+}
+
+.new-post {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.new-post-text {
+  height: 120px;
+  width: 100%;
+  align-self: center;
+  font-size: 1.1em;
+  background-color: #38373A;
+  color: #ffffff;
+  border: solid 1px #0073DE;
+  border-radius: 5px;
+  resize: none;
+  outline: none;
+}
+
+.new-post-submit {
+  display: block;
+  align-self: flex-end;
+  margin: 10px;
+  background-color: #27262A;
+  border: solid 1px #5588EB;
+  color: #2898FF;
+  font-size: 1.1em;
+  border-radius: 5px;
+  transition: all .5s ease-out;
+}
+
+.new-post-submit:hover {
+  cursor: pointer;
+  background-color: #000000;
+  border: solid 1px #0073DE;
+}
+
+.posts {
+  width: 100%;
+}
+
+.post-item {
+  width: 95%;
+  margin: 20px 0;
+  padding: 10px;
+  font-size: 1.1em;
+  background-color: #38373A;
+  color: #ffffff;
+  border-radius: 10px/5%;
+}

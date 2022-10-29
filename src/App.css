@@ -151,5 +151,5 @@
   font-size: 1.1em;
   background-color: #38373A;
   color: #ffffff;
-  border-radius: 10px/5%;
+  border-radius: 10px/min(10px, 10%);
 }

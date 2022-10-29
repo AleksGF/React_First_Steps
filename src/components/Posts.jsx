@@ -11,6 +11,7 @@ const Posts = () => {
                 Curabitur dapibus purus viverra lorem molestie fermentum. Cras pharetra a justo sed ornare. Maecenas elementum ligula in nisl malesuada, eget consectetur ante dignissim. Aliquam tincidunt vehicula facilisis. Aenean maximus faucibus lacus at fringilla. Proin quis sem vitae nisl varius condimentum. Vivamus feugiat tempus dolor facilisis consequat. Aliquam purus eros, bibendum et dui vitae, consequat venenatis tellus. Duis mollis aliquet mi ut placerat. Nulla facilisi. Maecenas non gravida ex. Integer ut mattis tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque fringilla orci eget tellus commodo, sit amet suscipit quam dictum. Curabitur dolor tortor, feugiat eget metus et, imperdiet cursus nisi. Suspendisse sed magna velit.
 
                 Praesent quis lacus nisl. Aliquam erat volutpat. Phasellus maximus turpis enim, vel dignissim orci posuere vitae. Proin urna turpis, pharetra in bibendum vel, auctor non ex. Duis interdum metus eget interdum fermentum. Cras ac arcu at sapien vestibulum eleifend. Nunc sed convallis odio, condimentum blandit orci. Nullam metus ex, facilisis eget dignissim quis, ultrices sit amet mi. Donec tempor pellentesque orci, nec gravida nulla venenatis commodo.</div>
+            <div  className="post-item">Post 3</div>
         </div>
     );
 };

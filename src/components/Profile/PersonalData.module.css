@@ -1,0 +1,13 @@
+.personal_data_container {
+  display: flex;
+  margin: 30px auto;
+  width: 95%;
+}
+
+.avatar {
+  max-width: 98px;
+  max-height: 98px;
+  border: solid 1px #888888;
+  border-radius: 5px;
+  margin-right: 10px;
+}

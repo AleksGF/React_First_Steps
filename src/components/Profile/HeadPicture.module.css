@@ -1,0 +1,15 @@
+.head_picture_container {
+  position: relative;
+  overflow: hidden;
+  height: 120px;
+  width: 98%;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.profile_head_picture {
+  position: absolute;
+  top: -135px;
+  width: 100%;
+  opacity: 85%;
+}

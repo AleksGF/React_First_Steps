@@ -1,10 +1,11 @@
 import HeadPicture from "./HeadPicture";
 import PersonalData from "./PersonalData";
-import PostContainer from "./PostContainer";
+import PostContainer from "../Posts/PostContainer";
+import styles from "./Profile.module.css";
 
 const Profile = () => {
     return (
-        <main className="content">
+        <main className={styles.content}>
             <HeadPicture />
             <PersonalData />
             <PostContainer />

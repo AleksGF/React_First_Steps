@@ -1,0 +1,30 @@
+.nav {
+  grid-area: nav;
+}
+
+.nav_list_item {
+  border: solid 1px #5588EB;
+  border-radius: 5px;
+  width: 70%;
+  margin: 10px auto;
+  padding: 10px;
+  transition: all .5s ease-out;
+}
+
+.nav_list_item:hover {
+  background-color: #000000;
+  border: solid 1px #0073DE;
+  cursor: pointer;
+}
+
+.nav_list_item:last-child {
+  margin-top: 50px;
+}
+
+.nav_list_item_link {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2898FF;
+  text-decoration: none;
+  margin-left: 5px;
+}

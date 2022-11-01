@@ -1,15 +1,15 @@
 import HeadPicture from "./HeadPicture";
 import PersonalData from "./PersonalData";
-import PostContainer from "../Posts/PostContainer";
+import PostsContainer from "../Posts/PostsContainer";
 import styles from "./Profile.module.css";
 
 const Profile = () => {
     return (
-        <main className={styles.content}>
+        <div className={styles.profile}>
             <HeadPicture />
             <PersonalData />
-            <PostContainer />
-        </main>
+            <PostsContainer />
+        </div>
     );
 };
 

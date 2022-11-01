@@ -1,0 +1,58 @@
+.dialoguesWrapper {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas: "dialogues messages";
+  height: 100%;
+}
+
+.dialogues {
+  grid-area: dialogues;
+  border-right: solid 1px #5588EB;
+}
+
+.dialogues_list {
+  list-style: none;
+  padding: 0;
+}
+
+.dialogues_item {
+  cursor: pointer;
+  transition: all .5s ease-out;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.dialogues_item:hover {
+  background-color: #38373A;
+}
+
+.dialogues_item a {
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 2rem;
+  color: #2898FF;
+  text-decoration: none;
+}
+
+.messages {
+  grid-area: messages;
+}
+
+.messages_list {
+  list-style: none;
+  padding: 0;
+}
+
+.messages_item {
+  margin: 10px;
+
+}
+
+.message_text {
+  display: inline-block;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #38373A;
+  border-radius: 10px/min(10px, 10%);
+}

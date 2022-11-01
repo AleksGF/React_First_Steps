@@ -1,0 +1,32 @@
+.post_item {
+  width: 95%;
+  margin: 20px 0;
+  padding: 10px;
+  font-size: 1.1em;
+  background-color: #38373A;
+  color: #ffffff;
+  border-radius: 10px/min(10px, 10%);
+  display: grid;
+  grid-template-rows: 30px 1fr;
+  grid-template-columns: 60px 1fr;
+  grid-template-areas: "avatar header"
+                       "avatar text";
+}
+
+.authorAvatar {
+  grid-area: avatar;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.header {
+  grid-area: header;
+  margin: 5px;
+  padding: 0;
+  color: #2898FF;
+}
+
+.postText {
+  grid-area: text;
+}

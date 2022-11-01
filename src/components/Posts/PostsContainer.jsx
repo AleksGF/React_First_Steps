@@ -1,8 +1,8 @@
 import NewPost from "./NewPost";
 import Posts from "./Posts";
-import styles from "./PostContainer.module.css";
+import styles from "./PostsContainer.module.css";
 
-const PostContainer = () => {
+const PostsContainer = () => {
     return (
         <div className={styles.post_container}>
             <NewPost />
@@ -11,4 +11,4 @@ const PostContainer = () => {
     );
 };
 
-export default PostContainer;
+export default PostsContainer;

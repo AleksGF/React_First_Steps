@@ -1,13 +1,3 @@
 .posts {
   width: 100%;
 }
-
-.post_item {
-  width: 95%;
-  margin: 20px 0;
-  padding: 10px;
-  font-size: 1.1em;
-  background-color: #38373A;
-  color: #ffffff;
-  border-radius: 10px/min(10px, 10%);
-}

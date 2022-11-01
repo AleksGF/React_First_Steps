@@ -1,7 +1,8 @@
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
+import MainContent from "./components/MainContent/MainContent";
+
 
 
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
       <div className="app-wrapper">
           <Header />
           <Navbar />
-          <Profile />
+          <MainContent />
       </div>
   );
 };

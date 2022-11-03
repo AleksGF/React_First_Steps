@@ -1,0 +1,23 @@
+.messages_item {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 10px;
+}
+
+.ownMessage .author, .ownMessage .message_text {
+  align-self: end;
+}
+
+.author {
+  display: inline-block;
+  color: #2898FF;
+}
+
+.message_text {
+  display: inline-block;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #38373A;
+  border-radius: 10px/min(10px, 10%);
+}

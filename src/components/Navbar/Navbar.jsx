@@ -1,22 +1,43 @@
 import styles from "./Navbar.module.css";
+import {NavLink} from "react-router-dom";
 
 const Navbar = () => {
     return (
         <nav className={styles.nav}>
             <div className={styles.nav_list_item}>
-                <a className={styles.nav_list_item_link} href='/JS/react_study/first_app/it-kamasutra-1/public'>Profile</a>
+                <NavLink className={({isActive}) =>
+                    isActive
+                        ? styles.nav_list_item_link + " " + styles.active
+                        : styles.nav_list_item_link
+                } to='/profile'>Profile</NavLink>
             </div>
             <div className={styles.nav_list_item}>
-                <a className={styles.nav_list_item_link} href='/JS/react_study/first_app/it-kamasutra-1/public'>Messages</a>
+                <NavLink className={({isActive}) =>
+                    isActive
+                        ? styles.nav_list_item_link + " " + styles.active
+                        : styles.nav_list_item_link
+                } to='/dialogues'>Messages</NavLink>
             </div>
             <div className={styles.nav_list_item}>
-                <a className={styles.nav_list_item_link} href='/JS/react_study/first_app/it-kamasutra-1/public'>News</a>
+                <NavLink className={({isActive}) =>
+                    isActive
+                        ? styles.nav_list_item_link + " " + styles.active
+                        : styles.nav_list_item_link
+                } to='/news'>News</NavLink>
             </div>
             <div className={styles.nav_list_item}>
-                <a className={styles.nav_list_item_link} href='/JS/react_study/first_app/it-kamasutra-1/public'>Music</a>
+                <NavLink className={({isActive}) =>
+                    isActive
+                        ? styles.nav_list_item_link + " " + styles.active
+                        : styles.nav_list_item_link
+                } to='/music'>Music</NavLink>
             </div>
             <div className={styles.nav_list_item}>
-                <a className={styles.nav_list_item_link} href='/JS/react_study/first_app/it-kamasutra-1/public'>Settings</a>
+                <NavLink className={({isActive}) =>
+                    isActive
+                        ? styles.nav_list_item_link + " " + styles.active
+                        : styles.nav_list_item_link
+                } to='/settings'>Settings</NavLink>
             </div>
         </nav>
     );

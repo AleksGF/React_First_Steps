@@ -11,3 +11,7 @@
   border-radius: 10px;
   overflow: hidden;
 }
+
+.content_wrapper {
+  grid-area: content;
+}

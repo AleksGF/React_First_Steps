@@ -1,14 +1,14 @@
-import HeadPicture from "./HeadPicture";
-import PersonalData from "./PersonalData";
+import HeadPicture from "./HeadPicture/HeadPicture";
+import PersonalDataContainer from "./PersonalDataContainer/PersonalDataContainer";
 import PostsContainer from "../Posts/PostsContainer";
 import styles from "./Profile.module.css";
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div className={styles.profile}>
             <HeadPicture />
-            <PersonalData />
-            <PostsContainer />
+            <PersonalDataContainer />
+            <PostsContainer posts={props.posts}/>
         </div>
     );
 };

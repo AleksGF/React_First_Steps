@@ -1,32 +1,47 @@
-import DialogueItem from "./DialogueItem";
-import MessageItem from "./MessageItem";
+import DialogueItem from "./DialogueItem/DialogueItem";
+import MessageItem from "./MessageItrm/MessageItem";
 import styles from "./Dialogues.module.css";
 
 
-const Dialogues = () => {
-    return (
-        <div className={styles.dialoguesWrapper}>
-            <div className={styles.dialogues}>
-                <DialogueItem id={'1'} name={'Freind #1'}/>
-                <DialogueItem id={'2'} name={'Freind #2'}/>
-                <DialogueItem id={'3'} name={'Freind #3'}/>
-                <DialogueItem id={'4'} name={'Freind #4'}/>
-                <DialogueItem id={'5'} name={'Freind #5'}/>
-                <DialogueItem id={'6'} name={'Freind #6'}/>
-                <DialogueItem id={'7'} name={'Freind #7'}/>
-                <DialogueItem id={'8'} name={'Freind #8'}/>
-                <DialogueItem id={'9'} name={'Freind #9'}/>
-            </div>
-            <div className={styles.messages}>
-                <MessageItem authorName={'Freind'} messageText={'Some very interesting text'}/>
-                <MessageItem authorName={'Me'} messageText={':-)'}/>
-                <MessageItem authorName={'Freind'} messageText={'Something interesting too'}/>
-                <MessageItem authorName={'Me'} messageText={'Very very very'}/>
-                <MessageItem authorName={'Freind'} messageText={'Another reply'}/>
-                <MessageItem authorName={'Me'} messageText={'Good bie!'}/>
-            </div>
-        </div>
-    )
+const Dialogues = (props) => {
+  const dialogues = props.dialogues.map(
+    dialogue => <DialogueItem
+      key={dialogue.id}
+      id={dialogue.id}
+      name={dialogue.name}
+      avatar={dialogue.avatar}
+    />
+  );
+
+  const findName = id => props.dialogues.find(el => el.id === id).name;
+
+  const messages = props.messages
+    .sort((messageA, messageB) => (new Date(messageA.date) - new Date(messageB.date)))
+    .map(
+    message => <MessageItem
+      key={Math.random()}
+      authorName={message.authorId === 0 ? "Me" : findName(message.authorId)}
+      date={message.date}
+      messageText={message.message}
+    />
+  );
+
+  return (
+    <div className={styles.dialoguesWrapper}>
+      <div className={styles.dialogues}>
+        {dialogues}
+      </div>
+      <div className={styles.messages}>
+        {messages}
+        {/*<MessageItem authorName={'Freind'} messageText={'Some very interesting text'}/>
+        <MessageItem authorName={'Me'} messageText={':-)'}/>
+        <MessageItem authorName={'Freind'} messageText={'Something interesting too'}/>
+        <MessageItem authorName={'Me'} messageText={'Very very very'}/>
+        <MessageItem authorName={'Freind'} messageText={'Another reply'}/>
+        <MessageItem authorName={'Me'} messageText={'Good bie!'}/>*/}
+      </div>
+    </div>
+  )
 };
 
 export default Dialogues;

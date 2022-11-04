@@ -1,12 +1,12 @@
-import NewPost from "./NewPost";
-import Posts from "./Posts";
+import NewPost from "./NewPost/NewPost";
+import Posts from "./Posts/Posts";
 import styles from "./PostsContainer.module.css";
 
-const PostsContainer = () => {
+const PostsContainer = (props) => {
     return (
         <div className={styles.post_container}>
             <NewPost />
-            <Posts />
+            <Posts posts={props.posts}/>
         </div>
     );
 };

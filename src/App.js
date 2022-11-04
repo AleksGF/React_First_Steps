@@ -7,7 +7,7 @@ import './App.css';
 
 
 
-const App = () => {
+const App = (props) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -15,10 +15,10 @@ const App = () => {
                 <Navbar/>
                 <main className="content_wrapper">
                     <Routes>
-                        <Route path='/' element={<Profile/>}/>
-                        <Route path='profile' element={<Profile/>}/>
-                        <Route path='dialogues' element={<Dialogues/>}/>
-                        <Route path='dialogues/*' element={<Dialogues/>}/>   {/* Temp link */}
+                        <Route path='/' element={<Profile posts={props.data.posts}/>}/>
+                        <Route path='profile' element={<Profile posts={props.data.posts}/>}/>
+                        <Route path='dialogues' element={<Dialogues dialogues={props.data.dialogues} messages={props.data.messages}/>}/>
+                        <Route path='dialogues/*' element={<Dialogues dialogues={props.data.dialogues} messages={props.data.messages}/>}/>   {/* Temp link */}
                         <Route path='news' element={
                             <div>
                                 <p>Here will be News-component!</p>

@@ -1,6 +1,6 @@
-import styles from "./Post.module.css";
+import styles from "./PostItem.module.css";
 
-const Post = (props) => {
+const PostItem = (props) => {
     return (
         <div className={styles.post_item}>
             <img className={styles.authorAvatar} src={props.author.avatar} alt="avatar" />
@@ -10,4 +10,4 @@ const Post = (props) => {
     );
 }
 
-export default Post;
+export default PostItem;

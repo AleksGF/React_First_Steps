@@ -4,7 +4,7 @@ import styles from "./Dialogues.module.css";
 
 
 const Dialogues = (props) => {
-  const dialogues = props.dialogues.map(
+  const dialoguesElements = props.state.dialogues.map(
     dialogue => <DialogueItem
       key={dialogue.id}
       id={dialogue.id}
@@ -13,9 +13,9 @@ const Dialogues = (props) => {
     />
   );
 
-  const findName = id => props.dialogues.find(el => el.id === id).name;
+  const findName = id => props.state.dialogues.find(el => el.id === id).name;
 
-  const messages = props.messages
+  const messagesElements = props.state.messages
     .sort((messageA, messageB) => (new Date(messageA.date) - new Date(messageB.date)))
     .map(
     message => <MessageItem
@@ -29,16 +29,10 @@ const Dialogues = (props) => {
   return (
     <div className={styles.dialoguesWrapper}>
       <div className={styles.dialogues}>
-        {dialogues}
+        {dialoguesElements}
       </div>
       <div className={styles.messages}>
-        {messages}
-        {/*<MessageItem authorName={'Freind'} messageText={'Some very interesting text'}/>
-        <MessageItem authorName={'Me'} messageText={':-)'}/>
-        <MessageItem authorName={'Freind'} messageText={'Something interesting too'}/>
-        <MessageItem authorName={'Me'} messageText={'Very very very'}/>
-        <MessageItem authorName={'Freind'} messageText={'Another reply'}/>
-        <MessageItem authorName={'Me'} messageText={'Good bie!'}/>*/}
+        {messagesElements}
       </div>
     </div>
   )

@@ -15,10 +15,10 @@ const App = (props) => {
                 <Navbar/>
                 <main className="content_wrapper">
                     <Routes>
-                        <Route path='/' element={<Profile posts={props.data.posts}/>}/>
-                        <Route path='profile' element={<Profile posts={props.data.posts}/>}/>
-                        <Route path='dialogues' element={<Dialogues dialogues={props.data.dialogues} messages={props.data.messages}/>}/>
-                        <Route path='dialogues/*' element={<Dialogues dialogues={props.data.dialogues} messages={props.data.messages}/>}/>   {/* Temp link */}
+                        <Route path='/' element={<Profile state={props.state.profilePage}/>}/>
+                        <Route path='profile' element={<Profile state={props.state.profilePage}/>}/>
+                        <Route path='dialogues' element={<Dialogues state={props.state.dialoguesPage}/>}/>
+                        <Route path='dialogues/*' element={<Dialogues state={props.state.dialoguesPage}/>}/>   {/* Temp link */}
                         <Route path='news' element={
                             <div>
                                 <p>Here will be News-component!</p>

@@ -2,7 +2,7 @@ import PostItem from "./PostItem/PostItem";
 import styles from "./Posts.module.css";
 
 const Posts = (props) => {
-  const posts = props.posts
+  const postsElements = props.posts
     .sort(
       (postA, postB) => (new Date(postB.post.date)) - (new Date(postA.post.date))
     )
@@ -12,7 +12,7 @@ const Posts = (props) => {
 
   return (
     <div className={styles.posts}>
-      {posts}
+      {postsElements}
     </div>
   );
 };

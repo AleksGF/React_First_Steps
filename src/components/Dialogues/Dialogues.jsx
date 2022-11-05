@@ -1,9 +1,12 @@
 import DialogueItem from "./DialogueItem/DialogueItem";
-import MessageItem from "./MessageItrm/MessageItem";
+import MessageItem from "./MessageItem/MessageItem";
 import styles from "./Dialogues.module.css";
+import {useParams} from "react-router-dom";
 
 
 const Dialogues = (props) => {
+  let dialogueId = useParams().id;
+
   const dialoguesElements = props.state.dialogues.map(
     dialogue => <DialogueItem
       key={dialogue.id}
@@ -13,18 +16,30 @@ const Dialogues = (props) => {
     />
   );
 
+  const filterMessages =
+    message =>
+      (message.authorId === Number(dialogueId)
+        || message.addresseeId === Number(dialogueId)
+      );
+
+  const sortMessages =
+    (messageA, messageB) =>
+      (new Date(messageA.date) - new Date(messageB.date)
+      );
+
   const findName = id => props.state.dialogues.find(el => el.id === id).name;
 
-  const messagesElements = props.state.messages
-    .sort((messageA, messageB) => (new Date(messageA.date) - new Date(messageB.date)))
-    .map(
-    message => <MessageItem
-      key={Math.random()}
-      authorName={message.authorId === 0 ? "Me" : findName(message.authorId)}
-      date={message.date}
-      messageText={message.message}
-    />
-  );
+  const messagesElements = dialogueId
+    ? props.state.messages.filter(filterMessages).sort(sortMessages)
+      .map(
+        message => <MessageItem
+          key={Math.random()}
+          authorName={message.authorId === 0 ? "Me" : findName(message.authorId)}
+          date={message.date}
+          messageText={message.message}
+        />
+      )
+    : "";
 
   return (
     <div className={styles.dialoguesWrapper}>

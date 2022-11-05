@@ -1,12 +1,12 @@
 .messages_item {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   margin: 10px;
 }
 
 .ownMessage .author, .ownMessage .message_text {
-  align-self: end;
+  align-self: flex-end;
 }
 
 .author {

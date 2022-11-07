@@ -11,8 +11,12 @@ const App = (props) => {
 
       <Routes>
         <Route path='/' element={<Layout/>}>
-          <Route index element={<Profile state={props.state.profilePage}/>}/>
-          <Route path='profile' element={<Profile state={props.state.profilePage}/>}/>
+          <Route index element={<Profile state={props.state.profilePage}
+                                         changeTextAreaValue={props.changeTextAreaValue}
+                                         addNewPost={props.addNewPost}/>}/>
+          <Route path='profile' element={<Profile state={props.state.profilePage}
+                                                  changeTextAreaValue={props.changeTextAreaValue}
+                                                  addNewPost={props.addNewPost}/>}/>
           <Route path='dialogues' element={<Dialogues state={props.state.dialoguesPage}/>}/>
           <Route path='dialogues/:id' element={<Dialogues state={props.state.dialoguesPage}/>}/>
           <Route path='news' element={

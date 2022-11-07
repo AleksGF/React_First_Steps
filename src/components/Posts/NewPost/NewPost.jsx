@@ -1,10 +1,20 @@
+import React from "react";
 import styles from "./NewPost.module.css";
 
-const NewPost = () => {
-    return (
+const NewPost = (props) => {
+  const textAreaElement = React.createRef();
+
+  return (
         <div className={styles.new_post}>
-            <textarea className={styles.new_post_text} defaultValue="What`s in your mind?.."/>
-            <button className={styles.new_post_submit}>Send new post</button>
+            <textarea className={styles.new_post_text}
+                      ref={textAreaElement}
+                      value={props.textAreaValue}
+                      onChange={() => {
+                        props.changeTextAreaValue(textAreaElement.current.value);
+                        textAreaElement.current.focus();
+                      }}
+            />
+            <button className={styles.new_post_submit} onClick={props.addNewPost}>Send new post</button>
         </div>
     );
 };

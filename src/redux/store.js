@@ -29,8 +29,8 @@ const store = {
   },
 
   dispatch(action) {
-    profileReducer(this._state.profilePage, action);
-    dialoguesReducer(this._state.dialoguesPage, action);
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialoguesPage = dialoguesReducer(this._state.dialoguesPage, action);
 
     this._callSubscriber(this._state);
   },

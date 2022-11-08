@@ -1,22 +1,27 @@
 import React from "react";
 import styles from "./NewPost.module.css";
+import {changeTextareaTextCreator, addNewPostCreator} from "../../../redux/profileReducer";
 
 const NewPost = (props) => {
-  const textAreaElement = React.createRef();
+  const onChangeText = (newText) => {
+    const action = changeTextareaTextCreator(newText);
+    props.dispatch(action);
+  };
+
+  const onAddNewPost = () => {
+    const action = addNewPostCreator();
+    props.dispatch(action);
+  };
 
   return (
-        <div className={styles.new_post}>
+    <div className={styles.new_post}>
             <textarea className={styles.new_post_text}
-                      ref={textAreaElement}
-                      value={props.textAreaValue}
-                      onChange={() => {
-                        props.changeTextAreaValue(textAreaElement.current.value);
-                        textAreaElement.current.focus();
-                      }}
+                      value={props.textareaText}
+                      onChange={(event) => onChangeText(event.currentTarget.value)}
             />
-            <button className={styles.new_post_submit} onClick={props.addNewPost}>Send new post</button>
-        </div>
-    );
+      <button className={styles.new_post_submit} onClick={onAddNewPost}>Send new post</button>
+    </div>
+  );
 };
 
 export default NewPost;

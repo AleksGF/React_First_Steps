@@ -21,3 +21,7 @@
   color: #2898FF;
   text-decoration: none;
 }
+
+.dialogues_item:has(.active) {
+  background-color: #38373A;
+}

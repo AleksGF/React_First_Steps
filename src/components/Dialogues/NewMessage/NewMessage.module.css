@@ -1,0 +1,37 @@
+.message {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 50px 10px 20px auto;
+}
+
+.message_text {
+  height: 50px;
+  width: 100%;
+  align-self: center;
+  font-size: 1.1em;
+  background-color: #38373A;
+  color: #ffffff;
+  border: solid 1px #0073DE;
+  border-radius: 5px;
+  resize: none;
+  outline: none;
+}
+
+.send_message {
+  display: block;
+  align-self: flex-end;
+  margin: 10px;
+  background-color: #27262A;
+  border: solid 1px #5588EB;
+  color: #2898FF;
+  font-size: 1.1em;
+  border-radius: 5px;
+  transition: all .5s ease-out;
+}
+
+.send_message:hover {
+  cursor: pointer;
+  background-color: #000000;
+  border: solid 1px #0073DE;
+}

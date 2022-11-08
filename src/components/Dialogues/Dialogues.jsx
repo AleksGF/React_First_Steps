@@ -2,6 +2,7 @@ import DialogueItem from "./DialogueItem/DialogueItem";
 import MessageItem from "./MessageItem/MessageItem";
 import styles from "./Dialogues.module.css";
 import {useParams} from "react-router-dom";
+import NewMessage from "./NewMessage/NewMessage";
 
 
 const Dialogues = (props) => {
@@ -47,7 +48,11 @@ const Dialogues = (props) => {
         {dialoguesElements}
       </div>
       <div className={styles.messages}>
-        {messagesElements}
+        <div>{messagesElements}</div>
+        {dialogueId && <NewMessage dialogueId={dialogueId}
+                                   dispatch={props.dispatch}
+                                   textareaText={props.state.textareaText}
+        />}
       </div>
     </div>
   )

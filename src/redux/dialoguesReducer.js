@@ -1,5 +1,14 @@
+import dialogues from "../testData/dialogues";
+import messages from "../testData/messages";
+
 const CHANGE_MESSAGE_BODY = 'CHANGE_MESSAGE_BODY';
 const SEND_MESSAGE = 'SEND_MESSAGE';
+
+const initialState = {
+  dialogues,
+  messages,
+  textareaText: "",
+};
 
 export const changeMessageBodyCreator = (newBody) => ({
   type: CHANGE_MESSAGE_BODY,
@@ -11,7 +20,7 @@ export const sendMessageCreator = (dialogueId) => ({
   dialogueId: dialogueId
 });
 
-const dialoguesReducer = (state, action) => {
+const dialoguesReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_MESSAGE_BODY:
       state.textareaText = action.body;

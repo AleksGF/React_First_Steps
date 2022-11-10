@@ -18,23 +18,29 @@ export const addNewPostCreator = () => ({type: ADD_NEW_POST});
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_TEXTAREA_TEXT:
-      state.textareaText = action.text;
-      return state;
-    case ADD_NEW_POST:
-      const newPost = {
-        id: state.posts.length + 1,
-        author: {
-          name: "Anonim Anonimus",
-          avatar: "https://buddy.ai/buddy-dino.8e355d36.png"
-        },
-        post: {
-          date: "2022-11-12",
-          text: state.textareaText,
-        },
+      return {
+        ...state,
+        textareaText: action.text,
       };
-      state.posts.push(newPost);
-      state.textareaText = "What`s on your mind?..";
-      return state;
+    case ADD_NEW_POST:
+      return {
+        ...state,
+        posts: [
+          ...state.posts,
+          {
+            id: state.posts.length + 1,
+            author: {
+              name: "Anonim Anonimus",
+              avatar: "https://buddy.ai/buddy-dino.8e355d36.png"
+            },
+            post: {
+              date: "2022-11-12",
+              text: state.textareaText,
+            },
+          }
+        ],
+        textareaText: "What`s on your mind?..",
+      };
     default:
       return state;
   }

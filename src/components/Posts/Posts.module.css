@@ -1,6 +1,10 @@
-.post_container {
+.post_wrapper {
   display: flex;
   flex-direction: column;
   margin: auto;
   width: 95%;
+}
+
+.posts {
+  width: 100%;
 }

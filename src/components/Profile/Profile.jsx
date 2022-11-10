@@ -1,5 +1,5 @@
 import HeadPicture from "./HeadPicture/HeadPicture";
-import PersonalDataContainer from "./PersonalDataContainer/PersonalDataContainer";
+import PersonalData from "./PersonalData/PersonalData";
 import PostsContainer from "../Posts/PostsContainer";
 import styles from "./Profile.module.css";
 
@@ -7,10 +7,8 @@ const Profile = (props) => {
     return (
         <div className={styles.profile}>
             <HeadPicture />
-            <PersonalDataContainer />
-            <PostsContainer posts={props.state.posts}
-                            textareaText={props.state.textareaText}
-                            dispatch={props.dispatch}/>
+            <PersonalData />
+            <PostsContainer store={props.store}/>
         </div>
     );
 };

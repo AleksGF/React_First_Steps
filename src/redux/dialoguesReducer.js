@@ -23,18 +23,24 @@ export const sendMessageCreator = (dialogueId) => ({
 const dialoguesReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_MESSAGE_BODY:
-      state.textareaText = action.body;
-      return state;
-    case SEND_MESSAGE:
-      const newMessage = {
-        authorId: 0,
-        addresseeId: Number(action.dialogueId),
-        date: "2022-11-11",
-        message: state.textareaText,
+      return {
+        ...state,
+        textareaText: action.body,
       };
-      state.messages.push(newMessage);
-      state.textareaText = "";
-      return state;
+    case SEND_MESSAGE:
+      return {
+        ...state,
+        messages: [
+          ...state.messages,
+          {
+            authorId: 0,
+            addresseeId: Number(action.dialogueId),
+            date: "2022-11-11",
+            message: state.textareaText,
+          }
+        ],
+        textareaText: "",
+      };
     default:
       return state;
   }

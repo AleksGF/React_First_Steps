@@ -1,15 +1,21 @@
-import NewPost from "./NewPost/NewPost";
-import Posts from "./Posts/Posts";
-import styles from "./PostsContainer.module.css";
+import {changeTextareaTextCreator, addNewPostCreator} from "../../redux/profileReducer";
+import Posts from "./Posts";
+import {connect} from "react-redux";
 
-const PostsContainer = (props) => {
-    return (
-        <div className={styles.post_container}>
-            <NewPost textareaText={props.textareaText}
-                     dispatch={props.dispatch}/>
-            <Posts posts={props.posts}/>
-        </div>
-    );
+const mapStateToProps = (state) => {
+  return {
+    posts: state.profilePage.posts,
+    textareaText: state.profilePage.textareaText,
+  };
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChangeText: (newValue) => {dispatch(changeTextareaTextCreator(newValue))},
+    onAddNewPost: () => {dispatch(addNewPostCreator())},
+  };
+};
+
+const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
 
 export default PostsContainer;

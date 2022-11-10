@@ -1,8 +1,8 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Profile from "./components/Profile/Profile";
-import Dialogues from "./components/Dialogues/Dialogues";
 import './App.css';
 import Layout from "./components/Layout/Layout";
+import DialoguesContainer from "./components/Dialogues/DialoguesContainer";
 
 
 const App = (props) => {
@@ -11,14 +11,10 @@ const App = (props) => {
 
       <Routes>
         <Route path='/' element={<Layout/>}>
-          <Route index element={<Profile state={props.state.profilePage}
-                                         dispatch={props.dispatch}/>}/>
-          <Route path='profile' element={<Profile state={props.state.profilePage}
-                                                  dispatch={props.dispatch}/>}/>
-          <Route path='dialogues' element={<Dialogues state={props.state.dialoguesPage}
-                                                      dispatch={props.dispatch}/>}/>
-          <Route path='dialogues/:id' element={<Dialogues state={props.state.dialoguesPage}
-                                                          dispatch={props.dispatch}/>}/>
+          <Route index element={<Profile store={props.store}/>}/>
+          <Route path='profile' element={<Profile store={props.store}/>}/>
+          <Route path='dialogues' element={<DialoguesContainer store={props.store}/>}/>
+          <Route path='dialogues/:id' element={<DialoguesContainer store={props.store}/>}/>
           <Route path='news' element={
             <div>
               <p>Here will be News-component!</p>

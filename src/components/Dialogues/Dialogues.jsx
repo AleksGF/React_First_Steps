@@ -8,7 +8,7 @@ import NewMessage from "./NewMessage/NewMessage";
 const Dialogues = (props) => {
   let dialogueId = useParams().id;
 
-  const dialoguesElements = props.state.dialogues.map(
+  const dialoguesElements = props.dialogues.map(
     dialogue => <DialogueItem
       key={dialogue.id}
       id={dialogue.id}
@@ -28,10 +28,10 @@ const Dialogues = (props) => {
       (new Date(messageA.date) - new Date(messageB.date)
       );
 
-  const findName = id => props.state.dialogues.find(el => el.id === id).name;
+  const findName = id => props.dialogues.find(el => el.id === id).name;
 
   const messagesElements = dialogueId
-    ? props.state.messages.filter(filterMessages).sort(sortMessages)
+    ? props.messages.filter(filterMessages).sort(sortMessages)
       .map(
         message => <MessageItem
           key={Math.random()}
@@ -50,8 +50,9 @@ const Dialogues = (props) => {
       <div className={styles.messages}>
         <div>{messagesElements}</div>
         {dialogueId && <NewMessage dialogueId={dialogueId}
-                                   dispatch={props.dispatch}
-                                   textareaText={props.state.textareaText}
+                                   onChangeText={props.onChangeText}
+                                   onSendMessage={props.onSendMessage}
+                                   textareaText={props.textareaText}
         />}
       </div>
     </div>

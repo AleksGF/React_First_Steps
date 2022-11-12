@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
     onAddNewPost: () => {dispatch(addNewPostCreator())},
   };
 };
-
+// TODO Change connect for hooks
 const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
 
 export default PostsContainer;

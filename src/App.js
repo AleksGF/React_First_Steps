@@ -3,18 +3,20 @@ import Profile from "./components/Profile/Profile";
 import './App.css';
 import Layout from "./components/Layout/Layout";
 import DialoguesContainer from "./components/Dialogues/DialoguesContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
-const App = (props) => {
+const App = () => {
   return (
     <BrowserRouter>
 
       <Routes>
         <Route path='/' element={<Layout/>}>
-          <Route index element={<Profile store={props.store}/>}/>
-          <Route path='profile' element={<Profile store={props.store}/>}/>
-          <Route path='dialogues' element={<DialoguesContainer store={props.store}/>}/>
-          <Route path='dialogues/:id' element={<DialoguesContainer store={props.store}/>}/>
+          <Route index element={<Profile/>}/>
+          <Route path='profile' element={<Profile/>}/>
+          <Route path='dialogues/:id' element={<DialoguesContainer/>}/>
+          <Route path='dialogues' element={<DialoguesContainer/>}/>
+          <Route path='users' element={<UsersContainer/>}/>
           <Route path='news' element={
             <div>
               <p>Here will be News-component!</p>
@@ -37,7 +39,6 @@ const App = (props) => {
           }/>
         </Route>
       </Routes>
-      };
     </BrowserRouter>
   );
 };

@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
     onSendMessage: (dialogueId) => {dispatch(sendMessageCreator(dialogueId))},
   };
 };
-
+// TODO Change connect for hooks
 const DialoguesContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogues);
 
 export default DialoguesContainer;

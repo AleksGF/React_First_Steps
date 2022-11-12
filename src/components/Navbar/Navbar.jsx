@@ -30,6 +30,13 @@ const Navbar = () => {
           isActive
             ? styles.nav_list_item_link + " " + styles.active
             : styles.nav_list_item_link
+        } to='/users'>Users</NavLink>
+      </div>
+      <div className={styles.nav_list_item}>
+        <NavLink className={({isActive}) =>
+          isActive
+            ? styles.nav_list_item_link + " " + styles.active
+            : styles.nav_list_item_link
         } to='/music'>Music</NavLink>
       </div>
       <div className={styles.nav_list_item}>

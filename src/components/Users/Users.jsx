@@ -1,31 +1,34 @@
-import React from "react";
-import axios from "axios";
 import UserItem from "./UserItem/UserItem";
 import styles from "./Users.module.css";
 
+const Users = (props) => {
+  const pagesCount = Math.ceil(props.usersTotal / props.usersCount);
+  //TODO improve pagination
+  const pagination = [];
 
-class Users extends React.Component {
-  componentDidMount() {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users')
-      .then(resp => this.props.setUsers(resp.data.items));
+  for (let i = 1; i <= pagesCount; i++) {
+    if (i === 1 || i === pagesCount || (i > props.usersPage - 3 && i < props.usersPage + 3)) {
+      pagination.push(<span
+        key={i}
+        className={props.usersPage === i ? styles.activePage : ""}
+        onClick={() => props.onChangePage(i)}
+      > {i} </span>)
+    }
   }
 
-  render() {
-    return (
+  return (
       <div className={styles.users_wrapper}>
-        {
-          this.props.users.map(user => <UserItem
-            key={user.id}
-            user={user}
-            onFollowUser={this.props.onFollowUser}
-            onUnfollowUser={this.props.onUnfollowUser}
-          />)
-        }
-        <button className={styles.add_users_button}
-        onClick={() => this.props.setUsers([])}
-        >Add more users</button>
-      </div>);
-  }
+      {
+        props.users.map(user => <UserItem
+          key={user.id}
+          user={user}
+          onFollowUser={props.onFollowUser}
+          onUnfollowUser={props.onUnfollowUser}
+        />)
+      }
+      <div className={styles.pagination}>{pagination}</div>
+    </div>
+  );
 };
 
 export default Users;

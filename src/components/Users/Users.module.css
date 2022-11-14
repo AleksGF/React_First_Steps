@@ -20,3 +20,12 @@
   background-color: #000000;
   border: solid 1px #0073DE;
 }
+
+.pagination span:hover {
+  cursor: pointer;
+}
+
+.activePage {
+  font-weight: bold;
+  color: #2898FF;
+}

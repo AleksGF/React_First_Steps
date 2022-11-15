@@ -14,23 +14,17 @@ const initialState = {
   isFetching: false,
 };
 
-export const followUserCreator = (userId) => ({
-  type: FOLLOW_USER,
-  userId
-});
+export const followUser = (userId) => ({type: FOLLOW_USER, userId});
 
-export const unfollowUserCreator = (userId) => ({
-  type: UNFOLLOW_USER,
-  userId
-});
+export const unfollowUser = (userId) => ({type: UNFOLLOW_USER, userId});
 
-export const setUsersCreator = (newUsers) => ({type: SET_USERS, newUsers});
+export const setUsers = (newUsers) => ({type: SET_USERS, newUsers});
 
-export const setUsersPageCreator = (page) => ({type: SET_USERS_PAGE, page});
+export const setUsersPage = (page) => ({type: SET_USERS_PAGE, page});
 
-export const setUsersTotalCreator = (usersTotal) => ({type: SET_USERS_TOTAL, usersTotal});
+export const setUsersTotal = (usersTotal) => ({type: SET_USERS_TOTAL, usersTotal});
 
-export const setIsFetchingCreator = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
+export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {

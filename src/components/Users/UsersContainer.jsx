@@ -1,9 +1,10 @@
 import {
-  followUserCreator,
-  unfollowUserCreator,
-  setUsersCreator,
-  setUsersPageCreator,
-  setUsersTotalCreator, setIsFetchingCreator
+  followUser,
+  unfollowUser,
+  setUsers,
+  setUsersPage,
+  setUsersTotal,
+  setIsFetching
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import {connect} from "react-redux";
@@ -34,51 +35,22 @@ class UsersAPIContainer extends React.Component {
   render() {
     return (
       <Users
-        usersTotal={this.props.usersTotal}
-        usersCount={this.props.usersCount}
-        usersPage={this.props.usersPage}
-        users={this.props.users}
+        {...this.props}
         onChangePage={this.onChangePage.bind(this)}
-        onFollowUser={this.props.onFollowUser}
-        onUnfollowUser={this.props.onUnfollowUser}
-        isFetching={this.props.isFetching}
       />);
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    usersCount: state.usersPage.usersCount,
-    usersPage: state.usersPage.usersPage,
-    usersTotal: state.usersPage.usersTotal,
-    isFetching: state.usersPage.isFetching
+    ...state.usersPage
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onFollowUser: (userId) => {
-      dispatch(followUserCreator(userId))
-    },
-    onUnfollowUser: (userId) => {
-      dispatch(unfollowUserCreator(userId))
-    },
-    setUsers: (newUsers) => {
-      dispatch(setUsersCreator(newUsers))
-    },
-    setUsersPage: (page) => {
-      dispatch(setUsersPageCreator(page))
-    },
-    setUsersTotal: (usersTotal) => {
-      dispatch(setUsersTotalCreator(usersTotal))
-    },
-    setIsFetching: (isFetching) => {
-      dispatch(setIsFetchingCreator(isFetching))
-    }
-  };
-};
+
 // TODO Change connect for hooks
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer);
+const UsersContainer = connect(mapStateToProps, {
+  followUser, unfollowUser, setUsers, setUsersPage, setUsersTotal, setIsFetching
+})(UsersAPIContainer);
 
 export default UsersContainer;

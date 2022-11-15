@@ -3,6 +3,7 @@ const UNFOLLOW_USER = 'UNFOLLOW-USER';
 const SET_USERS = 'SET-USERS';
 const SET_USERS_PAGE = 'SET-USERS-PAGE';
 const SET_USERS_TOTAL = 'SET-USERS-TOTAL';
+const SET_IS_FETCHING = 'SET-IS-FETCHING';
 
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   usersCount: 5,
   usersPage: 1,
   usersTotal: 0,
+  isFetching: false,
 };
 
 export const followUserCreator = (userId) => ({
@@ -27,6 +29,8 @@ export const setUsersCreator = (newUsers) => ({type: SET_USERS, newUsers});
 export const setUsersPageCreator = (page) => ({type: SET_USERS_PAGE, page});
 
 export const setUsersTotalCreator = (usersTotal) => ({type: SET_USERS_TOTAL, usersTotal});
+
+export const setIsFetchingCreator = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -54,6 +58,11 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         usersTotal: action.usersTotal
+      };
+    case SET_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.isFetching
       };
     default:
       return state;

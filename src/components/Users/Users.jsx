@@ -1,5 +1,6 @@
 import UserItem from "./UserItem/UserItem";
 import styles from "./Users.module.css";
+import Loader from "../Loader/Loader";
 
 const Users = (props) => {
   const pagesCount = Math.ceil(props.usersTotal / props.usersCount);
@@ -18,7 +19,8 @@ const Users = (props) => {
 
   return (
       <div className={styles.users_wrapper}>
-      {
+        {props.isFetching ? <Loader/> : null}
+        {
         props.users.map(user => <UserItem
           key={user.id}
           user={user}

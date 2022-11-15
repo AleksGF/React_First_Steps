@@ -1,5 +1,5 @@
 import styles from "./UserItem.module.css";
-import userAvatar from "../../../assets/avatar.png";
+import userAvatar from "../../../assets/images/avatar.png";
 
 const UserItem = (props) => {
   return (

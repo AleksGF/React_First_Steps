@@ -1,6 +1,13 @@
+.loader_container {
+  display: grid;
+  height: calc(100vh - 120px);
+  width: 100%;
+}
+
 .loader {
   animation: rotate 5s linear infinite;
   width: 100px;
+  margin: auto;
 }
 
 @keyframes rotate {

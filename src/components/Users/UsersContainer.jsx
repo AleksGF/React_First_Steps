@@ -13,11 +13,13 @@ import axios from "axios";
 
 class UsersAPIContainer extends React.Component {
   componentDidMount() {
+    this.props.setIsFetching(true);
     axios.get(
       `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPage}&count=${this.props.usersCount}`
     ).then(resp => {
       this.props.setUsers(resp.data.items);
       this.props.setUsersTotal(resp.data.totalCount);
+      this.props.setIsFetching(false);
     });
   }
 

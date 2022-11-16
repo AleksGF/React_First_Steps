@@ -1,5 +1,5 @@
 import HeadPicture from "./HeadPicture/HeadPicture";
-import PersonalData from "./PersonalData/PersonalData";
+import PersonalDataContainer from "./PersonalData/PersonalDataContainer";
 import PostsContainer from "../Posts/PostsContainer";
 import styles from "./Profile.module.css";
 
@@ -7,7 +7,7 @@ const Profile = () => {
     return (
         <div className={styles.profile}>
             <HeadPicture />
-            <PersonalData />
+            <PersonalDataContainer />
             <PostsContainer/>
         </div>
     );

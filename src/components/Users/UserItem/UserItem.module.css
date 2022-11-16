@@ -1,3 +1,7 @@
+.user_link {
+  text-decoration: none;
+}
+
 .user_item {
   width: 95%;
   margin: 20px 0;

@@ -2,10 +2,16 @@ import posts from "../testData/posts";
 
 const CHANGE_TEXTAREA_TEXT = 'CHANGE-TEXTAREA-TEXT';
 const ADD_NEW_POST = 'ADD-NEW-POST';
+const SET_USERID = 'SET-USERID';
+const SET_USER = 'SET-USER';
+const SET_IS_FETCHING = 'SET-IS-FETCHING';
 
 const initialState = {
   posts,
   textareaText: "What`s on your mind?..",
+  userId: null,
+  user: {},
+  isFetching: false,
 };
 
 export const changeTextareaTextCreator = (newText) => ({
@@ -14,6 +20,12 @@ export const changeTextareaTextCreator = (newText) => ({
 });
 
 export const addNewPostCreator = () => ({type: ADD_NEW_POST});
+
+export const setUserId = (userId) => ({type: SET_USERID, userId});
+
+export const setUser = (user) => ({type: SET_USER, user});
+
+export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -40,6 +52,21 @@ const profileReducer = (state = initialState, action) => {
           }
         ],
         textareaText: "What`s on your mind?..",
+      };
+    case SET_USERID:
+      return {
+        ...state,
+        userId: action.userId,
+      };
+    case SET_USER:
+      return {
+        ...state,
+        user: action.user,
+      };
+    case SET_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.isFetching
       };
     default:
       return state;

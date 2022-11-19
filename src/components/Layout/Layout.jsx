@@ -1,12 +1,12 @@
 import {Outlet} from "react-router-dom";
-import Header from "../Header/Header";
 import Navbar from "../Navbar/Navbar";
 import styles from "./Layout.module.css";
+import HeaderContainer from "../Header/HeaderContainer";
 
 const Layout = () => {
   return (
     <div className="app-wrapper">
-      <Header/>
+      <HeaderContainer/>
       <Navbar/>
       <main className={styles.content_wrapper}>
         <Outlet/>

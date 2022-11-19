@@ -9,29 +9,49 @@ import {
 import Users from "./Users";
 import {connect} from "react-redux";
 import React from "react";
-import axios from "axios";
+import {usersAPI} from "../../api/usersAPI";
 
 class UsersAPIContainer extends React.Component {
   componentDidMount() {
     this.props.setIsFetching(true);
-    axios.get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPage}&count=${this.props.usersCount}`
-    ).then(resp => {
-      this.props.setUsers(resp.data.items);
-      this.props.setUsersTotal(resp.data.totalCount);
-      this.props.setIsFetching(false);
-    });
+    usersAPI.getUsers(this.props.usersPage, this.props.usersCount)
+      .then(data => {
+        this.props.setUsers(data.items);
+        this.props.setUsersTotal(data.totalCount);
+        this.props.setIsFetching(false);
+      });
   }
 
   onChangePage(page) {
     this.props.setIsFetching(true);
-    axios.get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersCount}`
-    ).then(resp => {
-      this.props.setUsers(resp.data.items);
-      this.props.setIsFetching(false);
-    });
+    usersAPI.getUsers(page, this.props.usersCount)
+      .then(data => {
+        this.props.setUsers(data.items);
+        this.props.setIsFetching(false);
+      });
     this.props.setUsersPage(page);
+  };
+
+  onFollowUser(userId) {
+    usersAPI.setFollowUser(userId)
+      .then(data => {
+        if (data.resultCode === 0) {
+          this.props.followUser(userId);
+        } else {
+          throw new Error(`Error: ${data?.messages}`);
+        }
+      });
+  };
+
+  onUnfollowUser(userId) {
+    usersAPI.setUnfollowUser(userId)
+      .then(data => {
+        if (data.resultCode === 0) {
+          this.props.unfollowUser(userId);
+        } else {
+          throw new Error(`Error: ${data?.messages}`);
+        }
+      });
   };
 
   render() {
@@ -39,6 +59,8 @@ class UsersAPIContainer extends React.Component {
       <Users
         {...this.props}
         onChangePage={this.onChangePage.bind(this)}
+        onFollowUser={this.onFollowUser.bind(this)}
+        onUnfollowUser={this.onUnfollowUser.bind(this)}
       />);
   }
 }

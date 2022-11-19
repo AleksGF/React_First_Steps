@@ -24,8 +24,8 @@ const Users = (props) => {
         props.users.map(user => <UserItem
           key={user.id}
           user={user}
-          onFollowUser={props.followUser}
-          onUnfollowUser={props.unfollowUser}
+          onFollowUser={props.onFollowUser}
+          onUnfollowUser={props.onUnfollowUser}
         />)
       }
       <div className={styles.pagination}>{pagination}</div>

@@ -1,9 +1,26 @@
 .header {
   grid-area: header;
+  display: grid;
+  grid-template-columns: 70px 1fr 70px;
+  grid-template-areas: "logo null login";
 }
 
 .logo {
+  grid-area: logo;
   max-height: 60px;
   border-radius: 50%;
   margin: 5px;
+}
+
+.login {
+  grid-area: login;
+  color: #2898FF;
+  font-weight: bold;
+  justify-content: center;
+  align-content: center;
+}
+
+.login a {
+  color: #2898FF;
+  font-weight: bold;
 }

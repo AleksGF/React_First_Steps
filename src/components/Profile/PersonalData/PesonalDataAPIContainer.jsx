@@ -1,22 +1,25 @@
 import PersonalData from "./PersonalData";
 import {useParams} from "react-router-dom";
 import {useEffect} from "react";
-import axios from "axios";
+import {usersAPI} from "../../../api/usersAPI";
 
 const PersonalDataAPIContainer = (props) => {
   const userId = useParams().userId;
+  const setIsFetching = props.setIsFetching;
+  const setUserId = props.setUserId;
+  const setUser = props.setUser;
 
-  useEffect(()=>{
+  useEffect(() => {
     if (userId) {
-      props.setIsFetching(true);
-      props.setUserId(userId);
-      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-        .then(resp => {
-          props.setUser(resp.data);
-          props.setIsFetching(false);
+      setIsFetching(true);
+      setUserId(userId);
+      usersAPI.getUser(userId)
+        .then(data => {
+          setUser(data);
+          setIsFetching(false);
         });
     }
-  },[userId]);
+  }, [userId, setIsFetching, setUserId, setUser]);
 
   return <PersonalData {...props}/>;
 };

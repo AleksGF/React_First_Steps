@@ -4,7 +4,7 @@ import {
   setUsers,
   setUsersPage,
   setUsersTotal,
-  setIsFetching
+  setIsFetching, setIsFollowingInProgress
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import {connect} from "react-redux";
@@ -33,6 +33,7 @@ class UsersAPIContainer extends React.Component {
   };
 
   onFollowUser(userId) {
+    this.props.setIsFollowingInProgress(userId, true);
     usersAPI.setFollowUser(userId)
       .then(data => {
         if (data.resultCode === 0) {
@@ -40,10 +41,12 @@ class UsersAPIContainer extends React.Component {
         } else {
           throw new Error(`Error: ${data?.messages}`);
         }
+        this.props.setIsFollowingInProgress(userId, false);
       });
   };
 
   onUnfollowUser(userId) {
+    this.props.setIsFollowingInProgress(userId, true);
     usersAPI.setUnfollowUser(userId)
       .then(data => {
         if (data.resultCode === 0) {
@@ -51,6 +54,7 @@ class UsersAPIContainer extends React.Component {
         } else {
           throw new Error(`Error: ${data?.messages}`);
         }
+        this.props.setIsFollowingInProgress(userId, false);
       });
   };
 
@@ -74,7 +78,7 @@ const mapStateToProps = (state) => {
 
 // TODO Change connect for hooks
 const UsersContainer = connect(mapStateToProps, {
-  followUser, unfollowUser, setUsers, setUsersPage, setUsersTotal, setIsFetching
+  followUser, unfollowUser, setUsers, setUsersPage, setUsersTotal, setIsFetching, setIsFollowingInProgress
 })(UsersAPIContainer);
 
 export default UsersContainer;

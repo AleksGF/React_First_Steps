@@ -4,6 +4,7 @@ const SET_USERS = 'SET-USERS';
 const SET_USERS_PAGE = 'SET-USERS-PAGE';
 const SET_USERS_TOTAL = 'SET-USERS-TOTAL';
 const SET_IS_FETCHING = 'SET-IS-FETCHING';
+const SET_IS_FOLLOWING_IN_PROGRESS = 'SET-IS-FOLLOWING-IN-PROGRESS';
 
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   usersPage: 1,
   usersTotal: 0,
   isFetching: false,
+  usersFollowingInProgressFor: [],
 };
 
 export const followUser = (userId) => ({type: FOLLOW_USER, userId});
@@ -25,6 +27,8 @@ export const setUsersPage = (page) => ({type: SET_USERS_PAGE, page});
 export const setUsersTotal = (usersTotal) => ({type: SET_USERS_TOTAL, usersTotal});
 
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
+
+export const setIsFollowingInProgress = (userId, isFetching) => ({type: SET_IS_FOLLOWING_IN_PROGRESS, userId, isFetching});
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -57,6 +61,13 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: action.isFetching
+      };
+      case SET_IS_FOLLOWING_IN_PROGRESS:
+      return {
+        ...state,
+        usersFollowingInProgressFor: action.isFetching
+          ? [...state.usersFollowingInProgressFor, action.userId]
+          : state.usersFollowingInProgressFor.filter(el => el !== action.userId),
       };
     default:
       return state;

@@ -22,8 +22,14 @@ const UserItem = (props) => {
       </div>
       <div className={styles.follow_button}>
         {props.user.followed
-          ? <button onClick={() => props.onUnfollowUser(props.user.id)}>Unfollow</button>
-          : <button onClick={() => props.onFollowUser(props.user.id)}>Follow</button>
+          ? <button
+            disabled={props.usersFollowingInProgressFor.includes(props.user.id)}
+            onClick={() => props.onUnfollowUser(props.user.id)}
+          >Unfollow</button>
+          : <button
+            disabled={props.usersFollowingInProgressFor.includes(props.user.id)}
+            onClick={() => props.onFollowUser(props.user.id)}
+          >Follow</button>
         }
       </div>
     </div>

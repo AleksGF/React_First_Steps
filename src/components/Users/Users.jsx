@@ -26,6 +26,7 @@ const Users = (props) => {
           user={user}
           onFollowUser={props.onFollowUser}
           onUnfollowUser={props.onUnfollowUser}
+          usersFollowingInProgressFor={props.usersFollowingInProgressFor}
         />)
       }
       <div className={styles.pagination}>{pagination}</div>

@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/usersAPI";
+
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
 const SET_USERS = 'SET-USERS';
@@ -16,9 +18,9 @@ const initialState = {
   usersFollowingInProgressFor: [],
 };
 
-export const followUser = (userId) => ({type: FOLLOW_USER, userId});
+export const setFollowUser = (userId) => ({type: FOLLOW_USER, userId});
 
-export const unfollowUser = (userId) => ({type: UNFOLLOW_USER, userId});
+export const setUnfollowUser = (userId) => ({type: UNFOLLOW_USER, userId});
 
 export const setUsers = (newUsers) => ({type: SET_USERS, newUsers});
 
@@ -28,7 +30,60 @@ export const setUsersTotal = (usersTotal) => ({type: SET_USERS_TOTAL, usersTotal
 
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 
-export const setIsFollowingInProgress = (userId, isFetching) => ({type: SET_IS_FOLLOWING_IN_PROGRESS, userId, isFetching});
+export const setIsFollowingInProgress = (userId, isFetching) => ({
+  type: SET_IS_FOLLOWING_IN_PROGRESS,
+  userId,
+  isFetching
+});
+
+
+export const getUsers = (page, count) => {
+  return (dispatch => {
+    dispatch(setIsFetching(true));
+    usersAPI.getUsers(page, count)
+      .then(data => {
+        if (!data.error) {
+          dispatch(setUsers(data.items));
+          dispatch(setUsersTotal(data.totalCount));
+        } else {
+          throw new Error(`Error: ${data?.error}`);
+        }
+        dispatch(setIsFetching(false));
+      });
+    dispatch(setUsersPage(page));
+  });
+};
+
+export const followUser = userId => {
+  return (dispatch => {
+    dispatch(setIsFollowingInProgress(userId, true));
+    usersAPI.setFollowUser(userId)
+      .then(data => {
+        if (data.resultCode === 0) {
+          dispatch(setFollowUser(userId));
+        } else {
+          throw new Error(`Error: ${data?.messages}`);
+        }
+        dispatch(setIsFollowingInProgress(userId, false));
+      });
+  });
+};
+
+export const unfollowUser = userId => {
+  return (dispatch => {
+    dispatch(setIsFollowingInProgress(userId, true));
+    usersAPI.setUnfollowUser(userId)
+      .then(data => {
+        if (data.resultCode === 0) {
+          dispatch(setUnfollowUser(userId));
+        } else {
+          throw new Error(`Error: ${data?.messages}`);
+        }
+        dispatch(setIsFollowingInProgress(userId, false));
+      });
+  });
+};
+
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -62,7 +117,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching
       };
-      case SET_IS_FOLLOWING_IN_PROGRESS:
+    case SET_IS_FOLLOWING_IN_PROGRESS:
       return {
         ...state,
         usersFollowingInProgressFor: action.isFetching

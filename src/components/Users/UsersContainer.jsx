@@ -1,61 +1,26 @@
 import {
-  followUser,
-  unfollowUser,
-  setUsers,
-  setUsersPage,
-  setUsersTotal,
-  setIsFetching, setIsFollowingInProgress
+  getUsers, followUser, unfollowUser
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import {connect} from "react-redux";
 import React from "react";
-import {usersAPI} from "../../api/usersAPI";
+
 
 class UsersAPIContainer extends React.Component {
   componentDidMount() {
-    this.props.setIsFetching(true);
-    usersAPI.getUsers(this.props.usersPage, this.props.usersCount)
-      .then(data => {
-        this.props.setUsers(data.items);
-        this.props.setUsersTotal(data.totalCount);
-        this.props.setIsFetching(false);
-      });
+    this.props.getUsers(this.props.usersPage, this.props.usersCount);
   }
 
   onChangePage(page) {
-    this.props.setIsFetching(true);
-    usersAPI.getUsers(page, this.props.usersCount)
-      .then(data => {
-        this.props.setUsers(data.items);
-        this.props.setIsFetching(false);
-      });
-    this.props.setUsersPage(page);
+    this.props.getUsers(page, this.props.usersCount);
   };
 
   onFollowUser(userId) {
-    this.props.setIsFollowingInProgress(userId, true);
-    usersAPI.setFollowUser(userId)
-      .then(data => {
-        if (data.resultCode === 0) {
-          this.props.followUser(userId);
-        } else {
-          throw new Error(`Error: ${data?.messages}`);
-        }
-        this.props.setIsFollowingInProgress(userId, false);
-      });
+    this.props.followUser(userId);
   };
 
   onUnfollowUser(userId) {
-    this.props.setIsFollowingInProgress(userId, true);
-    usersAPI.setUnfollowUser(userId)
-      .then(data => {
-        if (data.resultCode === 0) {
-          this.props.unfollowUser(userId);
-        } else {
-          throw new Error(`Error: ${data?.messages}`);
-        }
-        this.props.setIsFollowingInProgress(userId, false);
-      });
+    this.props.unfollowUser(userId);
   };
 
   render() {
@@ -78,7 +43,9 @@ const mapStateToProps = (state) => {
 
 // TODO Change connect for hooks
 const UsersContainer = connect(mapStateToProps, {
-  followUser, unfollowUser, setUsers, setUsersPage, setUsersTotal, setIsFetching, setIsFollowingInProgress
+  getUsers,
+  followUser,
+  unfollowUser,
 })(UsersAPIContainer);
 
 export default UsersContainer;

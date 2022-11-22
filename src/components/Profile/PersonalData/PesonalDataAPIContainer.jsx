@@ -4,7 +4,7 @@ import {useEffect} from "react";
 
 
 const PersonalDataAPIContainer = (props) => {
-  const userId = useParams().userId;
+  const userId = useParams().userId || props.currentUser;
   const getUserById = props.getUserById;
 
   useEffect(() => {

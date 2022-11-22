@@ -61,6 +61,7 @@ const PersonalData = (props) => {
             </Link>
           }
         </div>
+        {/*TODO Add Follow/Unfollow button*/}
         <div>Follow/Unfollow</div>
       </div>
     </div>

@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
     user: {...state.profilePage.user},
     userId: state.profilePage.userId,
     isFetching: state.profilePage.isFetching,
+    currentUser: state.auth.userId,
   };
 };
 

@@ -4,6 +4,7 @@ import './App.css';
 import Layout from "./components/Layout/Layout";
 import DialoguesContainer from "./components/Dialogues/DialoguesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import Login from "./components/Login/Login";
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
               <p>Here will be Settings-component!</p>
             </div>
           }/>
+          <Route path={'login'} element={<Login/>}/>
           <Route path="*" element={
             <div>
               <p>There's nothing here!</p>

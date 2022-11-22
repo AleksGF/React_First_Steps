@@ -1,4 +1,5 @@
 import posts from "../testData/posts";
+import {usersAPI} from "../api/usersAPI";
 
 const CHANGE_TEXTAREA_TEXT = 'CHANGE-TEXTAREA-TEXT';
 const ADD_NEW_POST = 'ADD-NEW-POST';
@@ -26,6 +27,20 @@ export const setUserId = (userId) => ({type: SET_USERID, userId});
 export const setUser = (user) => ({type: SET_USER, user});
 
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
+
+
+export const getUserById = (userId) => {
+  return dispatch => {
+    dispatch(setIsFetching(true));
+    dispatch(setUserId(userId));
+    usersAPI.getUser(userId)
+      .then(data => {
+        dispatch(setUser(data));
+        dispatch(setIsFetching(false));
+      });
+  };
+};
+
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {

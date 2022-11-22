@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import PersonalDataAPIContainer from "./PesonalDataAPIContainer";
-import {setUserId, setUser, setIsFetching} from "../../../redux/profileReducer";
+import {getUserById} from "../../../redux/profileReducer";
 
 const mapStateToProps = (state) => {
   return {
@@ -13,6 +13,6 @@ const mapStateToProps = (state) => {
 // TODO Change connect for hooks
 const PersonalDataContainer = connect(
   mapStateToProps,
-  {setUserId, setUser, setIsFetching})(PersonalDataAPIContainer);
+  {getUserById})(PersonalDataAPIContainer);
 
 export default PersonalDataContainer;

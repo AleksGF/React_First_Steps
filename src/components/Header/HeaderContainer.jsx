@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {setCurrentUser, setIsAuth, setIsFetching} from "../../redux/authReducer";
+import {getCurrentUser} from "../../redux/authReducer";
 import HeaderAPIContainer from "./HeaderAPIContainer";
 
 const mapStateToProps = (state) => {
@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
 
 // TODO Change connect for hooks
 const HeaderContainer = connect(mapStateToProps, {
-  setCurrentUser, setIsAuth, setIsFetching,
+  getCurrentUser,
 })(HeaderAPIContainer);
 
 export default HeaderContainer;

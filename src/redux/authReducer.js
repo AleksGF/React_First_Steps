@@ -1,3 +1,5 @@
+import {authAPI} from "../api/authAPI";
+
 const SET_CURRENT_USER = 'SET-CURRENT-USER';
 const SET_IS_AUTH = 'SET-IS-AUTH';
 const SET_IS_FETCHING = 'SET-IS-FETCHING';
@@ -18,6 +20,22 @@ export const setCurrentUser = (userId, login, email) => ({
 export const setIsAuth = (isAuth) => ({type: SET_IS_AUTH, isAuth});
 
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
+
+
+export const getCurrentUser = () => {
+  return dispatch => {
+    dispatch(setIsFetching(true));
+    authAPI.getCurrentUser()
+      .then(data => {
+        if (data?.id) {
+          dispatch(setCurrentUser(data.id, data.login, data.email));
+          dispatch(setIsAuth(true));
+        }
+        dispatch(setIsFetching(false));
+      });
+  };
+};
+
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {

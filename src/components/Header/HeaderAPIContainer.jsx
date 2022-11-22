@@ -1,24 +1,12 @@
 import Header from "./Header";
 import {useEffect} from "react";
-import {authAPI} from "../../api/authAPI";
-
 
 const HeaderAPIContainer = (props) => {
-  const setIsFetching = props.setIsFetching;
-  const setCurrentUser = props.setCurrentUser;
-  const setIsAuth = props.setIsAuth;
+  const getCurrentUser = props.getCurrentUser;
 
   useEffect(() => {
-    setIsFetching(true);
-    authAPI.getCurrentUser()
-      .then(data => {
-        if (data?.id) {
-          setCurrentUser(data.id, data.login, data.email);
-          setIsAuth(true);
-        }
-        setIsFetching(false);
-      });
-  }, [setIsFetching, setCurrentUser, setIsAuth]);
+    getCurrentUser();
+  }, [getCurrentUser]);
 
   return (
     <Header {...props}/>

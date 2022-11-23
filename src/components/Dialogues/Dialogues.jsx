@@ -50,8 +50,8 @@ const Dialogues = (props) => {
       <div className={styles.messages}>
         <div>{messagesElements}</div>
         {dialogueId && <NewMessage dialogueId={dialogueId}
-                                   onChangeText={props.onChangeText}
-                                   onSendMessage={props.onSendMessage}
+                                   changeMessageBody={props.changeMessageBody}
+                                   sendMessage={props.sendMessage}
                                    textareaText={props.textareaText}
         />}
       </div>

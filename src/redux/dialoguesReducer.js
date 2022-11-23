@@ -10,12 +10,12 @@ const initialState = {
   textareaText: "",
 };
 
-export const changeMessageBodyCreator = (newBody) => ({
+export const changeMessageBody = (newBody) => ({
   type: CHANGE_MESSAGE_BODY,
   body: newBody
 });
 
-export const sendMessageCreator = (dialogueId) => ({
+export const sendMessage = (dialogueId) => ({
   type: SEND_MESSAGE,
   dialogueId: dialogueId
 });

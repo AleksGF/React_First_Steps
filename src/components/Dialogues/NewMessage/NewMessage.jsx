@@ -5,11 +5,11 @@ const NewMessage = (props) => {
     <div className={styles.message}>
       <textarea className={styles.message_text}
                 value={props.textareaText}
-                onChange={(event) => props.onChangeText(event.currentTarget.value)}
+                onChange={(event) => props.changeMessageBody(event.currentTarget.value)}
       />
       <button
         className={styles.send_message}
-        onClick={() => props.onSendMessage(props.dialogueId)}
+        onClick={() => props.sendMessage(props.dialogueId)}
       >Send message
       </button>
     </div>);

@@ -1,7 +1,8 @@
-import {changeMessageBodyCreator, sendMessageCreator} from "../../redux/dialoguesReducer";
+import {changeMessageBody, sendMessage} from "../../redux/dialoguesReducer";
 import Dialogues from "./Dialogues";
 import {connect} from "react-redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 const mapStateToProps = (state) => {
   return {
@@ -11,13 +12,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onChangeText: (newText) => {dispatch(changeMessageBodyCreator(newText))},
-    onSendMessage: (dialogueId) => {dispatch(sendMessageCreator(dialogueId))},
-  };
-};
 // TODO Change connect for hooks
-const DialoguesContainer = withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogues));
-
-export default DialoguesContainer;
+export default compose(
+  connect(mapStateToProps, {changeMessageBody, sendMessage}),
+  withAuthRedirect
+)(Dialogues);

@@ -1,6 +1,7 @@
 import {changeTextareaTextCreator, addNewPostCreator} from "../../redux/profileReducer";
 import Posts from "./Posts";
 import {connect} from "react-redux";
+import {compose} from "redux";
 
 const mapStateToProps = (state) => {
   return {
@@ -16,6 +17,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 // TODO Change connect for hooks
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
-
-export default PostsContainer;
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(Posts);

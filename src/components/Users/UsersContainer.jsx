@@ -4,6 +4,7 @@ import {
 import Users from "./Users";
 import {connect} from "react-redux";
 import React from "react";
+import {compose} from "redux";
 
 
 class UsersAPIContainer extends React.Component {
@@ -42,10 +43,10 @@ const mapStateToProps = (state) => {
 
 
 // TODO Change connect for hooks
-const UsersContainer = connect(mapStateToProps, {
-  getUsers,
-  followUser,
-  unfollowUser,
-})(UsersAPIContainer);
-
-export default UsersContainer;
+export default compose(
+  connect(mapStateToProps, {
+    getUsers,
+    followUser,
+    unfollowUser,
+  })
+)(UsersAPIContainer);

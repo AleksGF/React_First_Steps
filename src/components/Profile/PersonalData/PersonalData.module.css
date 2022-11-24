@@ -24,5 +24,5 @@
 .contacts_img {
   margin: 0.5rem;
   height: 2rem;
-  filter: invert(68%) sepia(99%) saturate(4405%) hue-rotate(189deg) brightness(100%) contrast(106%);
+  fill: #888888;
 }

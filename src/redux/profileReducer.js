@@ -1,5 +1,5 @@
 import posts from "../testData/posts";
-import {usersAPI} from "../api/usersAPI";
+import {profileAPI} from "../api/profileAPI";
 
 const CHANGE_TEXTAREA_TEXT = 'CHANGE-TEXTAREA-TEXT';
 const ADD_NEW_POST = 'ADD-NEW-POST';
@@ -33,7 +33,7 @@ export const getUserById = (userId) => {
   return dispatch => {
     dispatch(setIsFetching(true));
     dispatch(setUserId(userId));
-    usersAPI.getUser(userId)
+    profileAPI.getUser(userId)
       .then(data => {
         dispatch(setUser(data));
         dispatch(setIsFetching(false));

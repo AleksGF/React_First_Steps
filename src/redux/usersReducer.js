@@ -1,4 +1,5 @@
 import {usersAPI} from "../api/usersAPI";
+import {followAPI} from "../api/followAPI";
 
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
@@ -57,7 +58,7 @@ export const getUsers = (page, count) => {
 export const followUser = userId => {
   return (dispatch => {
     dispatch(setIsFollowingInProgress(userId, true));
-    usersAPI.setFollowUser(userId)
+    followAPI.setFollowUser(userId)
       .then(data => {
         if (data.resultCode === 0) {
           dispatch(setFollowUser(userId));
@@ -72,7 +73,7 @@ export const followUser = userId => {
 export const unfollowUser = userId => {
   return (dispatch => {
     dispatch(setIsFollowingInProgress(userId, true));
-    usersAPI.setUnfollowUser(userId)
+    followAPI.setUnfollowUser(userId)
       .then(data => {
         if (data.resultCode === 0) {
           dispatch(setUnfollowUser(userId));

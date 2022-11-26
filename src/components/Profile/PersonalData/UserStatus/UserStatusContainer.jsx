@@ -6,7 +6,7 @@ import UserStatus from "./UserStatus";
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.profilePage.userId,
+    userId: state.profilePage.user.userId,
     userStatus: state.profilePage.userStatus,
   };
 };

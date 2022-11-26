@@ -9,7 +9,7 @@ import {ReactComponent as VkImg} from "../../../assets/images/vk.svg";
 import {ReactComponent as WebsiteImg} from "../../../assets/images/site.svg";
 import {ReactComponent as YoutubeImg} from "../../../assets/images/youtube.svg";
 import {Link} from "react-router-dom";
-import UserStatus from "./UserStatus/UserStatus";
+import UserStatusContainer from "./UserStatus/UserStatusContainer";
 
 
 const PersonalData = (props) => {
@@ -22,7 +22,7 @@ const PersonalData = (props) => {
       } alt="Avatar pic"/>
       <div className={styles.personal_data}>
         <h2 className={styles.full_name}>{props.user.fullName}</h2>
-        <UserStatus/>
+        <UserStatusContainer/>
         <p><span className={styles.colored_text}>About me: </span>{props.user?.aboutMe}</p>
         <div className={styles.contacts}>
           {!props.user?.contacts?.facebook ? null

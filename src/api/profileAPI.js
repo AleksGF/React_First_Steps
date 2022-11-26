@@ -6,10 +6,10 @@ export const profileAPI = {
   },
 
   getUserStatus (userId) {
-    return axiosInstance.get(`/profile/status/${userId}`);
+    return axiosInstance.get(`/profile/status/${userId}`).then(resp => resp.data);
   },
 
-  setStatus (status) {
-    return axiosInstance.put(`/profile/status`, {status});
+  putUserStatus (status) {
+    return axiosInstance.put(`/profile/status`, {status}).then(resp => resp.data);
   }
 };

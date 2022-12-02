@@ -17,6 +17,10 @@
   outline: none;
 }
 
+.error_msg {
+  color: red;
+}
+
 .new_post_submit {
   display: block;
   align-self: flex-end;

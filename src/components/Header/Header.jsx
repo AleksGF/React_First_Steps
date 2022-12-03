@@ -1,6 +1,6 @@
 import styles from "./Header.module.css";
 import {Link} from "react-router-dom";
-import Loader from "../Loader/Loader";
+import Loader from "../common/Loader/Loader";
 
 const Header = (props) => {
   return (

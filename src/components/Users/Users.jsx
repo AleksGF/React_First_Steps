@@ -1,6 +1,6 @@
 import UserItem from "./UserItem/UserItem";
 import styles from "./Users.module.css";
-import Loader from "../Loader/Loader";
+import Loader from "../common/Loader/Loader";
 
 const Users = (props) => {
   const pagesCount = Math.ceil(props.usersTotal / props.usersCount);

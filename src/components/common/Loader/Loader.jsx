@@ -1,4 +1,4 @@
-import loaderImg from '../../assets/images/loading.svg';
+import loaderImg from '../../../assets/images/loading.svg';
 import styles from './Loder.module.css';
 
 const Loader = () => {

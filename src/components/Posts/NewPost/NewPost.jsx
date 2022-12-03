@@ -1,13 +1,14 @@
 import styles from "./NewPost.module.css";
 import {Form, Field} from 'react-final-form';
+import Textarea from "../../common/Textarea/Textarea";
+import {composeValidators, maxLength, minLength, required} from "../../../helpers/getValidator";
 
 const NewPost = (props) => {
-  //TODO refactor function onAddNewPost
   const onSubmit = (values) => {
-    props.onAddNewPost(values.newPostText);
+    props.addNewPost(values.newPostText);
   };
 
-  const getValidator = (values) => {
+  /*const getValidator = (values) => {
     const errors = {};
 
     if (!values.newPostText
@@ -17,30 +18,26 @@ const NewPost = (props) => {
     }
 
     return errors;
-  };
+  };*/
 
 
   return (
-    /*<div className={styles.new_post}>
-            <textarea className={styles.new_post_text}
-                      value={props.textareaText}
-                      onChange={(event) => props.onChangeText(event.currentTarget.value)}
-            />
-      <button className={styles.new_post_submit} onClick={props.onAddNewPost}>Send new post</button>
-    </div>*/
     <Form
       onSubmit={onSubmit}
-      validate={getValidator}
       render={({handleSubmit, submitting}) => (
         <form onSubmit={handleSubmit} className={styles.new_post}>
-          <Field name={'newPostText'}>
-            {({input, meta}) => (
-              <div>
-                <textarea {...input} className={styles.new_post_text}/>
-                {meta.error && meta.submitFailed && <div className={styles.error_msg}>{meta.error}</div>}
-              </div>
-            )}
+          <Field name={'newPostText'}
+                 placeholder={'What is on your mind?'}
+                 className={styles.new_post_text}
+                 validate={composeValidators(
+                   required('New Post'),
+                   minLength(3, 'New Post'),
+                   maxLength(300, 'New Post')
+                 )}
+          >
+            {props => (<Textarea {...props}/>)}
           </Field>
+          {/*TODO Disable button when Validation error*/}
           <button className={styles.new_post_submit}
                   disabled={submitting}
           >Send new post

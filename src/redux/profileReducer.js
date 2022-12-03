@@ -1,7 +1,7 @@
 import posts from "../testData/posts";
 import {profileAPI} from "../api/profileAPI";
+import {getDateNow} from "../helpers/getDateStr";
 
-const CHANGE_TEXTAREA_TEXT = 'CHANGE-TEXTAREA-TEXT';
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const SET_USERID = 'SET-USERID';
 const SET_USER = 'SET-USER';
@@ -10,19 +10,14 @@ const SET_USER_STATUS = 'SET-USER-STATUS';
 
 const initialState = {
   posts,
-  textareaText: "What`s on your mind?..",
   userId: null,
   user: {},
   isFetching: false,
-  userStatus: "null",
+  userStatus: null,
 };
 
-export const changeTextareaTextCreator = (newText) => ({
-  type: CHANGE_TEXTAREA_TEXT,
-  text: newText
-});
 
-export const addNewPostCreator = () => ({type: ADD_NEW_POST});
+export const addNewPost = (newPostText) => ({type: ADD_NEW_POST, newPostText});
 
 export const setUserId = (userId) => ({type: SET_USERID, userId});
 
@@ -74,11 +69,6 @@ export const putUserStatus = (userStatus) => {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CHANGE_TEXTAREA_TEXT:
-      return {
-        ...state,
-        textareaText: action.text,
-      };
     case ADD_NEW_POST:
       return {
         ...state,
@@ -87,16 +77,15 @@ const profileReducer = (state = initialState, action) => {
           {
             id: state.posts.length + 1,
             author: {
-              name: "Anonim Anonimus",
-              avatar: "https://buddy.ai/buddy-dino.8e355d36.png"
+              name: state.user?.fullName,
+              avatar: state.user?.photos?.small
             },
             post: {
-              date: "2022-11-12",
-              text: state.textareaText,
+              date: getDateNow(),
+              text: action.newPostText,
             },
           }
-        ],
-        textareaText: "What`s on your mind?..",
+        ]
       };
     case SET_USERID:
       return {

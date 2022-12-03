@@ -1,6 +1,6 @@
 import styles from './PersonalData.module.css';
 import avatarImg from '../../../assets/images/avatar.png';
-import Loader from "../../Loader/Loader";
+import Loader from "../../common/Loader/Loader";
 import {ReactComponent as FacebookImg} from "../../../assets/images/facebook.svg";
 import {ReactComponent as GithubImg} from "../../../assets/images/github.svg";
 import {ReactComponent as InstagramImg} from "../../../assets/images/instagram.svg";

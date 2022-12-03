@@ -5,7 +5,7 @@ import PostItem from "./PostItem/PostItem";
 const Posts = (props) => {
   const postsElements = props.posts
     .sort(
-      (postA, postB) => (new Date(postB.post.date)) - (new Date(postA.post.date))
+      (postA, postB) => postB.post.date > postA.post.date ? 1 : -1
     )
     .map(
       post => <PostItem key={post.id} author={post.author} post={post.post}/>
@@ -13,9 +13,7 @@ const Posts = (props) => {
 
   return (
     <div className={styles.post_wrapper}>
-      <NewPost textareaText={props.textareaText}
-               onChangeText={props.onChangeText}
-               onAddNewPost={props.onAddNewPost}
+      <NewPost addNewPost={props.addNewPost}
       />
       <div className={styles.posts}>
         {postsElements}

@@ -7,13 +7,12 @@ import {compose} from "redux";
 const mapStateToProps = (state) => {
   return {
     dialogues: state.dialoguesPage.dialogues,
-    messages: state.dialoguesPage.messages,
-    textareaText: state.dialoguesPage.textareaText,
+    messages: state.dialoguesPage.messages
   };
 };
 
 // TODO Change connect for hooks
 export default compose(
-  connect(mapStateToProps, {changeMessageBody, sendMessage}),
+  connect(mapStateToProps, {sendMessage}),
   withAuthRedirect
 )(Dialogues);

@@ -17,24 +17,6 @@
   outline: none;
 }
 
-.error_msg {
-  color: red;
-}
-
 .new_post_submit {
-  display: block;
   align-self: flex-end;
-  margin: 10px;
-  background-color: #27262A;
-  border: solid 1px #5588EB;
-  color: #2898FF;
-  font-size: 1.1em;
-  border-radius: 5px;
-  transition: all .5s ease-out;
-}
-
-.new_post_submit:hover {
-  cursor: pointer;
-  background-color: #000000;
-  border: solid 1px #0073DE;
 }

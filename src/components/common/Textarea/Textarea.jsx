@@ -1,11 +1,11 @@
-import styles from "../../Posts/NewPost/NewPost.module.css";
+import styles from "./Textarea.module.css";
 
 const Textarea = ({input, meta, ...props}) => {
   return (
     <div>
       <textarea  {...input} {...props}/>
       {meta.error
-        && meta.submitFailed
+        /*&& meta.submitFailed*/
         && <div className={styles.error_msg}>{meta.error}</div>}
     </div>
   );

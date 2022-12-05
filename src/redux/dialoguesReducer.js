@@ -1,32 +1,22 @@
 import dialogues from "../testData/dialogues";
 import messages from "../testData/messages";
+import {getDateNow} from "../helpers/getDateStr";
 
-const CHANGE_MESSAGE_BODY = 'CHANGE_MESSAGE_BODY';
 const SEND_MESSAGE = 'SEND_MESSAGE';
 
 const initialState = {
   dialogues,
-  messages,
-  textareaText: "",
+  messages
 };
 
-export const changeMessageBody = (newBody) => ({
-  type: CHANGE_MESSAGE_BODY,
-  body: newBody
-});
-
-export const sendMessage = (dialogueId) => ({
+export const sendMessage = (newMessageText, dialogueId) => ({
   type: SEND_MESSAGE,
-  dialogueId: dialogueId
+  newMessageText,
+  dialogueId
 });
 
 const dialoguesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CHANGE_MESSAGE_BODY:
-      return {
-        ...state,
-        textareaText: action.body,
-      };
     case SEND_MESSAGE:
       return {
         ...state,
@@ -35,11 +25,10 @@ const dialoguesReducer = (state = initialState, action) => {
           {
             authorId: 0,
             addresseeId: Number(action.dialogueId),
-            date: "2022-11-11",
-            message: state.textareaText,
+            date: getDateNow(),
+            message: action.newMessageText,
           }
-        ],
-        textareaText: "",
+        ]
       };
     default:
       return state;

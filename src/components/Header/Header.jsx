@@ -2,6 +2,7 @@ import styles from "./Header.module.css";
 import {Link} from "react-router-dom";
 import Loader from "../common/Loader/Loader";
 import {useEffect} from "react";
+import Button from "../common/Button/Button";
 
 const Header = (props) => {
   const getCurrentUser = props.getCurrentUser;
@@ -22,7 +23,7 @@ const Header = (props) => {
           ? (
             <div>
               <div>{props.login}</div>
-              <div><button onClick={logout}>Logout</button></div>
+              <Button btnText={'Logout'} onClick={logout}/>
             </div>
           )
           : <Link to={'/login'}>Login</Link>}

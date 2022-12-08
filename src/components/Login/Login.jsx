@@ -1,21 +1,23 @@
-import {useLocation} from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 import {Form, Field} from "react-final-form";
 import styles from './Login.module.css';
+import {FORM_ERROR} from "final-form";
+import Button from "../common/Button/Button";
 
-const Login = () => {
+const Login = (props) => {
   const location = useLocation();
 
-  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
   const onSubmit = async values => {
-    await sleep(2000);
-    alert(JSON.stringify(values));
+    let {email, password, rememberMe} = values;
+    let errors = await props.login(email, password, rememberMe);
+
+    return {[FORM_ERROR]: errors};
   };
 
   const getValidator = values => {
-    const errors={};
-    if (!values.login) {
-      errors.login = 'Login is required!'
+    const errors = {};
+    if (!values.email) {
+      errors.email = 'Email is required!'
     }
     if (!values.password) {
       errors.password = 'Password is required!'
@@ -23,16 +25,32 @@ const Login = () => {
     return errors;
   };
 
+  if (props.isAuth) {
+    const path = location.state?.from?.pathname ? location.state?.from?.pathname : '/';
+
+    return (
+      <Navigate to={path}/>
+    );
+  }
+
   return (
     <Form
       onSubmit={onSubmit}
       validate={getValidator}
-      render={({handleSubmit, submitting}) => (
+      render={({
+                 submitError,
+                 handleSubmit,
+                 submitting,
+                 pristine,
+                 invalid,
+                 modifiedSinceLastSubmit,
+                 submitSucceeded
+               }) => (
         <form onSubmit={handleSubmit} className={styles.login_form}>
-          <Field name={'login'}>
+          <Field name={'email'}>
             {({input, meta}) => (
               <div>
-              <label>Login</label>
+                <label>Email</label>
                 <input {...input} type={'text'}/>
                 {meta.error && meta.touched && <div className={styles.error_msg}>{meta.error}</div>}
               </div>
@@ -46,20 +64,27 @@ const Login = () => {
                 {meta.error && meta.touched && <div className={styles.error_msg}>{meta.error}</div>}
               </div>)}
           </Field>
-          <Field name={'rememberMe'} initialValue={true}>
+          <Field name={'rememberMe'} type={'checkbox'} defaultValue={true}>
             {({input}) => (
               <div>
                 <label>Remember me</label>
-                <input {...input} type={'checkbox'}/>
+                <input {...input}/>
               </div>
             )}
           </Field>
-        <div>
-          <button type={'submit'} className={styles.login_button} disabled={submitting}>Login</button>
-        </div>
-        <p>You came from: {location.state?.from?.pathname || '/'}</p>
+          {submitError && <div className={styles.error_msg}>{submitError}</div>}
+          <div>
+            <Button
+              btnText={'Login'}
+              type={'submit'}
+              className={styles.login_button}
+              disabled={submitting || pristine || (invalid && !modifiedSinceLastSubmit)}
+            />
+          </div>
+          <p>You came from: {location.state?.from?.pathname || '/'}</p>
         </form>
-      )}
+      )
+      }
     />
   );
 };

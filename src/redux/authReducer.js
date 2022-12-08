@@ -36,6 +36,34 @@ export const getCurrentUser = () => {
   };
 };
 
+export const login = (email, password, rememberMe) => {
+  return async dispatch => {
+    dispatch(setIsFetching(true));
+    let res = await authAPI.login(email, password, rememberMe);
+    dispatch(setIsFetching(false));
+
+    if (res.resultCode === 0) {
+      dispatch(getCurrentUser());
+    } else {
+      dispatch(setIsFetching(false));
+      return res.messages[0];
+    }
+  };
+}
+
+export const logout = () => {
+  return dispatch => {
+    dispatch(setIsFetching(true));
+    authAPI.logout()
+      .then(data => {
+        if (data?.resultCode === 0) {
+          dispatch(setCurrentUser(null, null, null));
+          dispatch(setIsAuth(false));
+        }
+        dispatch(setIsFetching(false));
+      });
+  };
+};
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -45,6 +73,7 @@ const authReducer = (state = initialState, action) => {
         userId: action.user.userId,
         login: action.user.login,
         email: action.user.email,
+        isAuth: true
       };
     case SET_IS_AUTH:
       return {

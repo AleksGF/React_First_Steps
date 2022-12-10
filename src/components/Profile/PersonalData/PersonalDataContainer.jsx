@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import PersonalDataAPIContainer from "./PesonalDataAPIContainer";
 import {getUserById} from "../../../redux/profileReducer";
 import {compose} from "redux";
+import withAuthRedirect from "../../../hoc/withAuthRedirect";
 
 const mapStateToProps = (state) => {
   return {
@@ -16,5 +17,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(
     mapStateToProps,
-    {getUserById})
+    {getUserById}),
+  withAuthRedirect
 )(PersonalDataAPIContainer);

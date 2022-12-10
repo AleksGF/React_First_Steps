@@ -24,14 +24,12 @@ export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching
 
 export const getCurrentUser = () => {
   return dispatch => {
-    dispatch(setIsFetching(true));
-    authAPI.getCurrentUser()
+    return authAPI.getCurrentUser()
       .then(data => {
         if (data?.id) {
           dispatch(setCurrentUser(data.id, data.login, data.email));
           dispatch(setIsAuth(true));
         }
-        dispatch(setIsFetching(false));
       });
   };
 };

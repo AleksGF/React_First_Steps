@@ -5,9 +5,26 @@ import Layout from "./components/Layout/Layout";
 import DialoguesContainer from "./components/Dialogues/DialoguesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import LoginContainer from "./components/Login/LoginContainer";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {inicialize} from "./redux/appReducer";
+import {useEffect} from "react";
+import Loader from "./components/common/Loader/Loader";
 
 
-const App = () => {
+const App = (props) => {
+  const inicialize = props.inicialize;
+
+  useEffect(() => {
+    inicialize();
+  },[inicialize]);
+
+  if (!props.initializationSuccess) {
+    return (
+      <Loader/>
+    );
+  };
+
   return (
     <BrowserRouter>
 
@@ -46,4 +63,11 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {initializationSuccess: state.app.initializationSuccess};
+};
+
+export default compose(
+  connect(mapStateToProps,
+    {inicialize})
+)(App);

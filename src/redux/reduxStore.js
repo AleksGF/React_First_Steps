@@ -4,6 +4,8 @@ import profileReducer from "./profileReducer";
 import dialoguesReducer from "./dialoguesReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
+import appReducer from "./appReducer";
+
 
 
 const reducers = combineReducers({
@@ -11,8 +13,9 @@ const reducers = combineReducers({
   dialoguesPage: dialoguesReducer,
   usersPage: usersReducer,
   auth: authReducer,
+  app: appReducer,
 });
 // TODO Change ReduxCreate for ReduxConfigure
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
-
+window.store = store;
 export default store;

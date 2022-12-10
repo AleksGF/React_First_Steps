@@ -5,13 +5,12 @@ import {compose} from "redux";
 
 
 const mapStateToProps = (state) => {
-  return {...state.auth};
+  return {login: state.auth.login};
 };
 
 // TODO Change connect for hooks
 export default compose(
   connect(mapStateToProps, {
-    getCurrentUser,
     logout,
   })
 )(Header);

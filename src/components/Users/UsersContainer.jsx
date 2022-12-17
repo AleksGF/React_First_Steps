@@ -1,12 +1,20 @@
 import {
-  getUsers, followUser, unfollowUser
+  requestUsers, followUser, unfollowUser
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import {connect} from "react-redux";
 import React from "react";
 import {compose} from "redux";
+import {
+  getIsFetching,
+  getUsers,
+  getUsersCount,
+  getUsersFollowingInProgressFor,
+  getUsersPage,
+  getUsersTotal
+} from "../../redux/usersSelectors";
 
-
+// TODO refactor for function
 class UsersAPIContainer extends React.Component {
   componentDidMount() {
     this.props.getUsers(this.props.usersPage, this.props.usersCount);
@@ -37,7 +45,12 @@ class UsersAPIContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    ...state.usersPage
+    users: getUsers(state),
+    usersCount: getUsersCount(state),
+    usersPage: getUsersPage(state),
+    usersTotal: getUsersTotal(state),
+    isFetching: getIsFetching(state),
+    usersFollowingInProgressFor: getUsersFollowingInProgressFor(state),
   };
 };
 
@@ -45,7 +58,7 @@ const mapStateToProps = (state) => {
 // TODO Change connect for hooks
 export default compose(
   connect(mapStateToProps, {
-    getUsers,
+    getUsers: requestUsers,
     followUser,
     unfollowUser,
   })

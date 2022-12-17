@@ -38,10 +38,10 @@ export const setIsFollowingInProgress = (userId, isFetching) => ({
 });
 
 
-export const getUsers = (page, count) => {
+export const requestUsers = (page, count) => {
   return (dispatch => {
     dispatch(setIsFetching(true));
-    usersAPI.getUsers(page, count)
+    usersAPI.requestUsers(page, count)
       .then(data => {
         if (!data.error) {
           dispatch(setUsers(data.items));
